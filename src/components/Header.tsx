@@ -14,7 +14,7 @@ export function Header() {
     return (
         <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
             <div className="container mx-auto px-4 sm:px-0 flex h-16 items-center justify-between">
-                <div className="w-1/3 flex items-center gap-2">
+                <Link href="/" className="w-1/3 flex items-center gap-2">
                     <div className="md:hidden">
                         <button className="flex items-center space-x-2" aria-label="Toggle Menu">
                             <svg
@@ -37,7 +37,7 @@ export function Header() {
                     </div>
                     <Calendar className="h-6 w-6 text-primary" />
                     <span className="text-xl font-bold">AgendaPro</span>
-                </div>
+                </Link>
                 <nav className="w-1/3 hidden md:flex justify-center gap-4 lg:gap-6">
                     <Link href="#caracteristicas" className="text-sm font-medium hover:text-primary">
                         Características

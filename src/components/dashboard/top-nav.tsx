@@ -1,7 +1,11 @@
 
 
+"use client";
 
+
+import { useRouter } from "next/navigation";
 import Link from "next/link"
+
 import {
     Bell,
     Calendar,
@@ -20,10 +24,27 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+
+interface IUserProps {
+    name: string;
+    email: string;
+}
 
 
-export function TopNav() {
+export function TopNav({ name, email }: IUserProps) {
+
+    const router = useRouter();
+    const signout = async () => {
+        const result = await fetch("/api/signout", {
+            method: "POST"
+        })
+        const data = await result.json();
+        if (data.success) {
+            router.push("/");
+        }
+    }
+
     return (
         <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b bg-background px-4 md:px-6">
             <div className="flex items-center gap-2 md:gap-4">
@@ -59,13 +80,13 @@ export function TopNav() {
                     <DropdownMenuTrigger asChild>
                         <Button variant="ghost" size="icon" className="rounded-full">
                             <Avatar className="h-8 w-8">
-                                <AvatarImage src="/placeholder.svg?height=32&width=32" alt="Avatar" />
                                 <AvatarFallback>AD</AvatarFallback>
                             </Avatar>
                         </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>Mi cuenta</DropdownMenuLabel>
+                        <DropdownMenuLabel>{ name }</DropdownMenuLabel>
+                        <DropdownMenuLabel>{ email }</DropdownMenuLabel>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem>
                             <User className="mr-2 h-4 w-4" />
@@ -76,8 +97,10 @@ export function TopNav() {
                             <span>Configuración</span>
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem>
-                            <Link href="/">Cerrar sesión</Link>                            
+                        <DropdownMenuItem 
+                            onClick={signout} 
+                            className="cursor-pointer">
+                            Cerrar sesión
                         </DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>

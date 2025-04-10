@@ -2,11 +2,7 @@
 
 
 
-import { 
-    Avatar, 
-    AvatarFallback, 
-    AvatarImage 
-} from "@/components/ui/avatar"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { 
@@ -37,7 +33,6 @@ export function UpcomingAppointments() {
             <TableCell>
               <div className="flex items-center gap-3">
                 <Avatar className="h-9 w-9">
-                  <AvatarImage src={appointment.avatar} alt={appointment.name} />
                   <AvatarFallback>{appointment.name.charAt(0)}</AvatarFallback>
                 </Avatar>
                 <div>

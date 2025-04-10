@@ -1,11 +1,7 @@
 
 
 
-import { 
-    Avatar, 
-    AvatarFallback, 
-    AvatarImage 
-} from "@/components/ui/avatar"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 
 export function RecentAppointments() {
   return (
@@ -13,7 +9,6 @@ export function RecentAppointments() {
       {recentAppointments.map((appointment) => (
         <div key={appointment.id} className="flex items-center">
           <Avatar className="h-9 w-9">
-            <AvatarImage src={appointment.avatar} alt="Avatar" />
             <AvatarFallback>{appointment.name.charAt(0)}</AvatarFallback>
           </Avatar>
           <div className="ml-4 space-y-1">

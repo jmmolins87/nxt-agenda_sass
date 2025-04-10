@@ -31,7 +31,7 @@ export function HeroSection() {
                         height={550}
                         alt="Agenda Digital"
                         title="Agenda Digital"
-                        className="w-full rounded-lg object-cover"
+                        className="w-full rounded-lg object-cover shadow-lg"
                     />
                 </div>
             </div>

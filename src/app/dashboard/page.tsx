@@ -1,13 +1,22 @@
 
 
 
-import { DashboardLayout } from "@/components/dashboard/Dashboard-layout"
-import { DashboardContent } from "@/components/dashboard/Dashboard-content"
+import { cookies } from "next/headers";
+
+import { DashboardLayout } from "@/components/dashboard/Dashboard-layout";
+import { DashboardContent } from "@/components/dashboard/Dashboard-content";
 
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+
+  const cookiesHandler = await cookies();
+  const username = cookiesHandler.get("username");
+  const usernameValue = JSON.parse(username?.value || "{}");
+
+  console.log(usernameValue);
+
   return (
-    <DashboardLayout>
+    <DashboardLayout usernameValue={usernameValue}>
       <DashboardContent />
     </DashboardLayout>
   )
