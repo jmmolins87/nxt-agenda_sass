@@ -1,0 +1,22 @@
+
+
+
+import type React from "react"
+import { TopNav } from "@/components/dashboard/top-nav"
+import { Sidebar } from "./sidebar"
+import { SidebarProvider } from "@/components/ui/sidebar"
+
+
+export function DashboardLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <SidebarProvider>
+      <div className="flex min-h-screen flex-col">
+        <TopNav />
+        <div className="flex flex-1">
+          <Sidebar />
+          <main className="flex-1 overflow-y-auto bg-muted/40 p-4 md:p-6">{children}</main>
+        </div>
+      </div>
+    </SidebarProvider>
+  )
+}
