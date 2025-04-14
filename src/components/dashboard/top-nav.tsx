@@ -3,9 +3,9 @@
 "use client";
 
 
-import { useRouter } from "next/navigation";
 import Link from "next/link"
 
+import { signoutAction } from "@/server/auth/auth";
 import {
     Bell,
     Calendar,
@@ -34,16 +34,22 @@ interface IUserProps {
 
 export function TopNav({ name, email }: IUserProps) {
 
-    const router = useRouter();
-    const signout = async () => {
-        const result = await fetch("/api/signout", {
-            method: "POST"
-        })
-        const data = await result.json();
-        if (data.success) {
-            router.push("/");
-        }
+    // const router = useRouter();
+    // const signout = async () => {
+    //     const result = await fetch("/api/signout", {
+    //         method: "POST"
+    //     })
+    //     const data = await result.json();
+    //     if (data.success) {
+    //         router.push("/");
+    //     }
+    // }
+
+    function getInitials(fullName: string): string {
+        const parts = fullName.trim().split(' ');
+        return parts.slice(0, 2).map(name => name.charAt(0).toUpperCase()).join('');
     }
+    const initials = getInitials(name);
 
     return (
         <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b bg-background px-4 md:px-6">
@@ -80,7 +86,7 @@ export function TopNav({ name, email }: IUserProps) {
                     <DropdownMenuTrigger asChild>
                         <Button variant="ghost" size="icon" className="rounded-full">
                             <Avatar className="h-8 w-8">
-                                <AvatarFallback>AD</AvatarFallback>
+                                <AvatarFallback>{ initials }</AvatarFallback>
                             </Avatar>
                         </Button>
                     </DropdownMenuTrigger>
@@ -98,7 +104,7 @@ export function TopNav({ name, email }: IUserProps) {
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem 
-                            onClick={signout} 
+                            onClick={signoutAction} 
                             className="cursor-pointer">
                             Cerrar sesión
                         </DropdownMenuItem>

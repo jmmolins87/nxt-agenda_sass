@@ -13,8 +13,6 @@ export default async function DashboardPage() {
   const username = cookiesHandler.get("username");
   const usernameValue = JSON.parse(username?.value || "{}");
 
-  console.log(usernameValue);
-
   return (
     <DashboardLayout usernameValue={usernameValue}>
       <DashboardContent />

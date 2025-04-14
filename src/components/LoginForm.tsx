@@ -4,12 +4,13 @@
 "use client"
 
 
-import { useState } from "react"
+import { useState } from "react";
 
-import { useRouter } from "next/navigation"
-import Link from "next/link"
+import Link from "next/link";
 
-import { Button } from "@/components/ui/button"
+import { signinAction } from "@/server/auth/auth";
+
+import { Button } from "@/components/ui/button";
 import {
     Card,
     CardContent,
@@ -17,47 +18,54 @@ import {
     CardFooter,
     CardHeader,
     CardTitle
-} from "@/components/ui/card"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+} from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { toast } from "sonner";
 
-import { Loader2 } from "lucide-react"
-import { PhoneCall } from "lucide-react"
+import { Loader2 } from "lucide-react";
+import { PhoneCall } from "lucide-react";
 
 
 export default function LoginForm() {
 
-    const router = useRouter();
-    const [isLoading, setIsLoading] = useState(false)
-    const [errorTxt, setErrorTxt] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
 
     async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
 
-        event.preventDefault()
-        setIsLoading(true)
+        event.preventDefault();
+        setIsLoading(true);
 
-        const formData = new FormData(event.currentTarget)
-        const email = formData.get("email") as string
-        const pass = formData.get("password") as string
+        const formData = new FormData(event.currentTarget);
+        const email = formData.get("email") as string;
+        const pass = formData.get("password") as string;
 
-        const result = await fetch("api/signin", {
-            method: "POST",
-            body: JSON.stringify({ email, pass }),
-            headers: {
-                "Content-Type": "application/json"
-            }
+        const result = await signinAction(email, pass);
+
+        toast.error("Error", {
+            description: "Usuario o contraseña incorrectos"
         })
 
-        const data = await result.json();
-        if (data.success === false) {
-            setErrorTxt("Correo electrónico o contraseña incorrectos")
-        } else {
-            setErrorTxt("")
-            setIsLoading(false)
-            router.push("/dashboard")
-        }
+        setIsLoading(false);
 
+        // const result = await fetch("api/signin", {
+        //     method: "POST",
+        //     body: JSON.stringify({ email, pass }),
+        //     headers: {
+        //         "Content-Type": "application/json"
+        //     }
+        // })
+        // const data = await result.json();
+
+        // if (data.success === false) {
+        //     setErrorTxt("Correo electrónico o contraseña incorrectos");
+        //     setIsLoading(false); 
+        // } else {
+        //     setErrorTxt("");
+        //     setIsLoading(false);
+        //     router.push("/dashboard");
+        // }
     }
 
     return (
@@ -82,36 +90,21 @@ export default function LoginForm() {
                     <div className="space-y-2">
                         <div className="flex items-center justify-between">
                             <Label htmlFor="password">Contraseña</Label>
-                            <Link href="/recovery" className="text-sm hover:text-gray-400">
-                                ¿Olvidaste tu contraseña?
-                            </Link>
+                            <Link href="/recovery" className="text-sm hover:text-gray-400">¿Olvidaste tu contraseña?</Link>
                         </div>
                         <Input id="password" type="password" name="password" />
                     </div>
                     <div className="flex items-center space-x-2">
                         <Checkbox id="remember" />
-                        <Label htmlFor="remember" className="text-sm font-normal">
-                            Recordarme
-                        </Label>
+                        <Label htmlFor="remember" className="text-sm font-normal">Recordarme</Label>
                     </div>
-                    <Button type="submit" className="w-full" disabled={isLoading}>
-                        {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Iniciar sesión"}
+                    <Button type="submit" className="w-full" disabled={ isLoading }>
+                        { isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Iniciar sesión" }
                     </Button>
-                    {
-                        (errorTxt !== "") && (
-                            <div className="w-fit mx-auto bg-red-200 border-2 border-red-700 text-center rounded p-1">
-                                <p className="text-red-700 text-sm">{errorTxt}</p>
-                            </div>
-                        )
-                    }
                 </CardContent>
                 <CardFooter className="flex flex-col justify-between items-center gap-4">
-                    <p className="text-sm text-gray-600">
-                        ¿No tienes una cuenta?
-                    </p>
-                    <Link href="/register" className="font-medium hover:underline">
-                        Regístrate
-                    </Link>
+                    <p className="text-sm text-gray-600">¿No tienes una cuenta?</p>
+                    <Link href="/register" className="font-medium hover:underline">Regístrate</Link>
                 </CardFooter>
             </Card>
         </form>
