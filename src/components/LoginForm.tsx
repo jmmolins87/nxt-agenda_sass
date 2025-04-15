@@ -8,7 +8,7 @@ import { useState } from "react";
 
 import Link from "next/link";
 
-import { signinAction } from "@/server/auth/auth";
+import { login } from "@/server/login/actions";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -41,7 +41,7 @@ export default function LoginForm() {
         const email = formData.get("email") as string;
         const pass = formData.get("password") as string;
 
-        const result = await signinAction(email, pass);
+        await login(email, pass)        
 
         toast.error("Error", {
             description: "Usuario o contraseña incorrectos"

@@ -5,7 +5,8 @@
 
 import Link from "next/link"
 
-import { signoutAction } from "@/server/auth/auth";
+import { logout } from "@/server/login/actions";
+
 import {
     Bell,
     Calendar,
@@ -104,7 +105,7 @@ export function TopNav({ name, email }: IUserProps) {
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem 
-                            onClick={signoutAction} 
+                            onClick={logout} 
                             className="cursor-pointer">
                             Cerrar sesión
                         </DropdownMenuItem>
