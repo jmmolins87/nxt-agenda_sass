@@ -2,11 +2,11 @@
 
 
 
-export const signinMock = async (email: string, pass: string) => {
+// export const signinMock = async (email: string, pass: string) => {
 
-    if(email === "demo@demo.com" && pass === "12345") {
-        return true;
-    } else {
-        return false;
-    }
-}
+//     if(email === "demo@demo.com" && pass === "12345") {
+//         return true;
+//     } else {
+//         return false;
+//     }
+// }

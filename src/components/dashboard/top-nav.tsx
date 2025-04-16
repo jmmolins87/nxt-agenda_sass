@@ -5,7 +5,7 @@
 
 import Link from "next/link"
 
-// import { logout } from "@/server/login/actions";
+import { logout } from "@/server/login/actions";
 
 import {
     Bell,
@@ -28,12 +28,12 @@ import {
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 
 interface IUserProps {
-    name: string;
+    // name: string;
     email: string;
 }
 
 
-export function TopNav({ name, email }: IUserProps) {
+export function TopNav({ email }: IUserProps) {
 
     // const router = useRouter();
     // const signout = async () => {
@@ -50,7 +50,7 @@ export function TopNav({ name, email }: IUserProps) {
         const parts = fullName.trim().split(' ');
         return parts.slice(0, 2).map(name => name.charAt(0).toUpperCase()).join('');
     }
-    const initials = getInitials(name);
+    // const initials = getInitials(name);
 
     return (
         <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b bg-background px-4 md:px-6">
@@ -87,12 +87,13 @@ export function TopNav({ name, email }: IUserProps) {
                     <DropdownMenuTrigger asChild>
                         <Button variant="ghost" size="icon" className="rounded-full">
                             <Avatar className="h-8 w-8">
-                                <AvatarFallback>{ initials }</AvatarFallback>
+                                {/* <AvatarFallback>{ initials }</AvatarFallback> */}
+                                <AvatarFallback>JM</AvatarFallback>
                             </Avatar>
                         </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>{ name }</DropdownMenuLabel>
+                        {/* <DropdownMenuLabel>{ name }</DropdownMenuLabel> */}
                         <DropdownMenuLabel>{ email }</DropdownMenuLabel>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem>
@@ -105,7 +106,7 @@ export function TopNav({ name, email }: IUserProps) {
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem 
-                            // onClick={logout} 
+                            onClick={logout} 
                             className="cursor-pointer">
                             Cerrar sesión
                         </DropdownMenuItem>

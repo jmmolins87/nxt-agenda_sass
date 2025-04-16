@@ -1,39 +1,39 @@
 
 
-"use server";
+// "use server";
 
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
+// import { cookies } from "next/headers";
+// import { redirect } from "next/navigation";
 
-import { signinMock } from "@/app/services/signin";
+// import { signinMock } from "@/app/services/signin";
 
 
-export const signinAction = async (email: string, pass: string) => {
+// export const signinAction = async (email: string, pass: string) => {
 
-    const logged = await signinMock(email, pass);
-    if(!logged) {
-        return false;
-    }
+//     const logged = await signinMock(email, pass);
+//     if(!logged) {
+//         return false;
+//     }
 
-    // Set Cookies
-    const cookiesHadler = await cookies();
-    cookiesHadler.set("isLogged", "ok");
-    const username = {
-        name: "Juan María Molins",
-        email: "demo@demo.com",
-        avatar: "/avatar/01.png"
-    }
-    cookiesHadler.set("username", JSON.stringify(username));
+//     // Set Cookies
+//     const cookiesHadler = await cookies();
+//     cookiesHadler.set("isLogged", "ok");
+//     const username = {
+//         name: "Juan María Molins",
+//         email: "demo@demo.com",
+//         avatar: "/avatar/01.png"
+//     }
+//     cookiesHadler.set("username", JSON.stringify(username));
 
-    redirect("/dashboard");
-}
+//     redirect("/dashboard");
+// }
 
-export const signoutAction = async () => {
+// export const signoutAction = async () => {
 
-    // Delete cookies
-    const cookiesHandler = await cookies();
-    cookiesHandler.delete("isLogged");
-    cookiesHandler.delete("username");
+//     // Delete cookies
+//     const cookiesHandler = await cookies();
+//     cookiesHandler.delete("isLogged");
+//     cookiesHandler.delete("username");
 
-    redirect("/");
-}
+//     redirect("/");
+// }
