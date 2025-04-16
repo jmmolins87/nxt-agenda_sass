@@ -21,22 +21,14 @@ export async function login(email: string, password: string) {
 
     const { error } = await supabase.auth.signInWithPassword(data)
 
-    if (error) {
-        redirect('/error')
-    }
+    // if (error) {
+    //     return error;
+    // }
 
-    revalidatePath('/', 'layout')
-    redirect('/dashboard')
-}
+    // revalidatePath("/", "layout");
+    // redirect("/dashboard");
 
-export const logout = async () => {
-
-    const supabase = await createClient()
-
-    await supabase.auth.signOut()
-
-    revalidatePath('/', 'layout')
-    redirect('/')
+    console.log({error})
 }
 
 export async function signup(formData: FormData) {

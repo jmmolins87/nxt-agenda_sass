@@ -39,9 +39,9 @@ export default function LoginForm() {
 
         const formData = new FormData(event.currentTarget);
         const email = formData.get("email") as string;
-        const pass = formData.get("password") as string;
+        const password = formData.get("password") as string;
 
-        await login(email, pass)        
+        await login(email, password)        
 
         toast.error("Error", {
             description: "Usuario o contraseña incorrectos"

@@ -5,7 +5,7 @@
 
 import Link from "next/link"
 
-import { logout } from "@/server/login/actions";
+// import { logout } from "@/server/login/actions";
 
 import {
     Bell,
@@ -105,7 +105,7 @@ export function TopNav({ name, email }: IUserProps) {
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem 
-                            onClick={logout} 
+                            // onClick={logout} 
                             className="cursor-pointer">
                             Cerrar sesión
                         </DropdownMenuItem>
