@@ -1,14 +1,14 @@
 
 
-"use client";
+"use client"
 
-import { useState } from "react";
+import { useState } from "react"
 
-import { changeDisplayName } from "@/server/login/actions";
+import { changeDisplayName } from "@/server/login/actions"
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { toast } from "sonner";
+import { toast } from "sonner"
 
 interface IChangeNameProps {
     displayName: string
