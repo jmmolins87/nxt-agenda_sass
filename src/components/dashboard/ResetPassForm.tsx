@@ -7,8 +7,6 @@ import { useState } from "react";
 
 import Link from "next/link";
 
-import { setNewPassword } from "@/server/login/actions";
-
 import { Button } from "@/components/ui/button";
 import {
     Card,
@@ -23,6 +21,7 @@ import { Label } from "@/components/ui/label";
 
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
+import { createClient } from "@/utils/supabase/client";
 
 
 
@@ -38,8 +37,23 @@ export default function ResetPassForm() {
 
         const formData = new FormData(event.currentTarget);
         const password = formData.get("password") as string;
+
+        if(password.length < 6) {
+            toast.error("Error", {
+                description: "La contraseña debe tener al menos 6 carácteres"
+            })
+            setIsLoading(false)
+            return
+        }
         
-        const error = await setNewPassword(password)
+        const supabase = await createClient()
+        const result = await supabase.auth.updateUser({
+            password
+        })
+
+        toast.success("Contraseña modificada", {
+            description: "La contraseña se ha modificado correctamente"
+        })
 
         setIsLoading(false);
         setShowLogin(true);
@@ -57,10 +71,14 @@ export default function ResetPassForm() {
                 <CardContent className="space-y-4">
                     <div className="space-y-2">
                         <Label htmlFor="password">Nueva contraseña</Label>
-                        <Input id="password" type="password" placeholder="Escriba su nueva contraseña" />
+                        <Input 
+                            id="password" 
+                            type="password" 
+                            name="password" 
+                            placeholder="Escriba su nueva contraseña" />
                     </div>
                     <Button type="submit" className="w-full" disabled={ isLoading }>
-                        { isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Enviar Enlace de Recuperación" }
+                        { isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Cambiar contraseña" }
                     </Button>
                 </CardContent>
                 <CardFooter className="flex flex-col justify-between items-center gap-4">

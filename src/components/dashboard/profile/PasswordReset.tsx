@@ -13,7 +13,9 @@ export const PasswordReset = () => {
 
     const handlerResetPass = async () => {
 
-        const result = await resetPassword()
+        const host = window.location.origin
+
+        const result = await resetPassword(host)
         if(result) {
             toast.success("Solicitud enviada", {
                 description: "Se ha enviado un correo electrónico para resetear la contraseña"

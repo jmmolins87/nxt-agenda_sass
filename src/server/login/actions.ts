@@ -82,7 +82,7 @@ export const changeDisplayName = async (newName: string) => {
     revalidatePath("/dashboard/profile", "page")
 }
 
-export const resetPassword = async () => {
+export const resetPassword = async (host: string) => {
     const supabase = await createClient()
 
     const {
@@ -91,7 +91,7 @@ export const resetPassword = async () => {
 
     if(user?.email) {
         await supabase.auth.resetPasswordForEmail(user?.email, {
-            redirectTo: `${window.location.origin}/recovery`
+            redirectTo: `${host}/recovery`
         })
         return true
     }
