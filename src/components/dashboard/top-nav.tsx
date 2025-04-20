@@ -101,7 +101,7 @@ export function TopNav({ email, user }: IUserProps) {
                         </DropdownMenuItem>
                         <DropdownMenuItem>
                             <Settings className="mr-2 h-4 w-4" />
-                            <span>Configuración</span>
+                            <Link href="/recovery">Configuration</Link>
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem 

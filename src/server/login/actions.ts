@@ -81,3 +81,31 @@ export const changeDisplayName = async (newName: string) => {
 
     revalidatePath("/dashboard/profile", "page")
 }
+
+export const resetPassword = async () => {
+    const supabase = await createClient()
+
+    const {
+        data: { user },
+    } = await supabase.auth.getUser()
+
+    if(user?.email) {
+        await supabase.auth.resetPasswordForEmail(user?.email, {
+            redirectTo: `${window.location.origin}/recovery`
+        })
+        return true
+    }
+
+    return false
+
+}
+
+export const setNewPassword = async (newPassword: string) => {
+    const supabase = await createClient()
+    
+    await supabase.auth.updateUser({
+        password: newPassword
+    })
+
+    supabase.auth.signOut()
+}
