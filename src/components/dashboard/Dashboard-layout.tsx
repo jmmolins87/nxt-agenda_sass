@@ -19,7 +19,7 @@ export async function DashboardLayout({ children }: { children: ReactNode }) {
   return (
     <SidebarProvider>
       <div className="flex min-h-screen flex-col">
-        <TopNav email={user?.email || "guest@example.com"} />
+        <TopNav email={user?.email || "guest@example.com"} user={typeof user === "string" ? user : "Guest"} />
         <div className="flex flex-1">
           <Sidebar />
           <main className="flex-1 overflow-y-auto bg-muted/40 p-4 md:p-6">{children}</main>

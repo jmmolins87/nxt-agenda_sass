@@ -47,9 +47,7 @@ export default function ResetPassForm() {
         }
         
         const supabase = await createClient()
-        const result = await supabase.auth.updateUser({
-            password
-        })
+        await supabase.auth.updateUser({password})
 
         toast.success("Contraseña modificada", {
             description: "La contraseña se ha modificado correctamente"

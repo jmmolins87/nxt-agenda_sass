@@ -8,7 +8,7 @@ import { useState } from "react";
 
 import Link from "next/link";
 
-import { login } from "@/server/login/actions";
+import { login, resetPassword } from "@/server/login/actions";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -90,7 +90,7 @@ export default function LoginForm() {
                     <div className="space-y-2">
                         <div className="flex items-center justify-between">
                             <Label htmlFor="password">Contraseña</Label>
-                            <Link href="/recovery" className="text-sm hover:text-gray-400">¿Olvidaste tu contraseña?</Link>
+                            <Link href="/reset" className="text-sm hover:text-gray-400">¿Olvidaste tu contraseña?</Link>
                         </div>
                         <Input id="password" type="password" name="password" />
                     </div>
