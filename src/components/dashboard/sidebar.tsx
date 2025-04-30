@@ -1,17 +1,14 @@
 
 
 
+import Link from "next/link";
 
 import { 
-    Calendar, 
     LayoutDashboard, 
     Users, 
-    Settings, 
-    BarChart3, 
-    MessageSquare, 
-    Clock, 
-    CreditCard 
+    Settings
 } from "lucide-react"
+
 import {
     Sidebar as SidebarComponent,
     SidebarContent,
@@ -35,66 +32,26 @@ export function Sidebar() {
                 <SidebarMenu>
                     <SidebarMenuItem>
                         <SidebarMenuButton asChild>
-                            <a href="/dashboard">
+                            <Link href="/dashboard">
                                 <LayoutDashboard className="h-5 w-5" />
                                 <span>Dashboard</span>
-                            </a>
+                            </Link>
                         </SidebarMenuButton>
                     </SidebarMenuItem>
                     <SidebarMenuItem>
                         <SidebarMenuButton asChild>
-                            <a href="/calendar">
-                                <Calendar className="h-5 w-5" />
-                                <span>Calendario</span>
-                            </a>
-                        </SidebarMenuButton>
-                    </SidebarMenuItem>
-                    <SidebarMenuItem>
-                        <SidebarMenuButton asChild>
-                            <a href="/appointments">
-                                <Clock className="h-5 w-5" />
-                                <span>Citas</span>
-                            </a>
-                        </SidebarMenuButton>
-                    </SidebarMenuItem>
-                    <SidebarMenuItem>
-                        <SidebarMenuButton asChild>
-                            <a href="/clients">
+                            <Link href="/dashboard/contacts">
                                 <Users className="h-5 w-5" />
-                                <span>Clientes</span>
-                            </a>
+                                <span>Contactos</span>
+                            </Link>
                         </SidebarMenuButton>
                     </SidebarMenuItem>
                     <SidebarMenuItem>
                         <SidebarMenuButton asChild>
-                            <a href="/messages">
-                                <MessageSquare className="h-5 w-5" />
-                                <span>Mensajes</span>
-                            </a>
-                        </SidebarMenuButton>
-                    </SidebarMenuItem>
-                    <SidebarMenuItem>
-                        <SidebarMenuButton asChild>
-                            <a href="/analytics">
-                                <BarChart3 className="h-5 w-5" />
-                                <span>Analíticas</span>
-                            </a>
-                        </SidebarMenuButton>
-                    </SidebarMenuItem>
-                    <SidebarMenuItem>
-                        <SidebarMenuButton asChild>
-                            <a href="/payments">
-                                <CreditCard className="h-5 w-5" />
-                                <span>Pagos</span>
-                            </a>
-                        </SidebarMenuButton>
-                    </SidebarMenuItem>
-                    <SidebarMenuItem>
-                        <SidebarMenuButton asChild>
-                            <a href="/settings">
+                            <Link href="/recovery">
                                 <Settings className="h-5 w-5" />
                                 <span>Configuración</span>
-                            </a>
+                            </Link>
                         </SidebarMenuButton>
                     </SidebarMenuItem>
                 </SidebarMenu>

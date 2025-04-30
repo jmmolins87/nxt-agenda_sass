@@ -32,7 +32,9 @@ export const PasswordReset = () => {
             <Button 
                 onClick={handlerResetPass}
                 variant="outline" 
-                className="cursor-pointer">Solicitar cambio de la contraseña</Button>
+                className="cursor-pointer">
+                Solicitar cambio de la contraseña
+            </Button>
         </div>
     )
 }
